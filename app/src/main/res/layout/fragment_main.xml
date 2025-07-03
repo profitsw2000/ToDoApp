@@ -31,6 +31,8 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="@dimen/fab_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/plus_icon"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
