@@ -13,7 +13,7 @@ import ru.profitsw2000.todoapp.data.room.model.TaskModel
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM TaskModel")
-    suspend fun all(): Flow<List<TaskModel>>
+    suspend fun all(): List<TaskModel>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(taskModel: TaskModel)
