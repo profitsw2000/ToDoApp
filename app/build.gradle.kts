@@ -50,6 +50,12 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.recyclerview)
+    //ViewModel
+    implementation(libs.androidx.livedata)
+    implementation(libs.androidx.viewmodel)
+    //Koin
+    implementation(libs.koin)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
