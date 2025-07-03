@@ -10,5 +10,7 @@ interface TasksRepository {
 
     suspend fun updateTask(taskModel: TaskModel)
 
+    suspend fun updateTasksList(tasksModelList: List<TaskModel>)
+
     suspend fun deleteTask(taskModel: TaskModel)
 }

@@ -7,6 +7,7 @@ import ru.profitsw2000.todoapp.data.room.model.TaskModel
 class TasksRepositoryImpl(
     private val appDatabase: AppDatabase
 ) : TasksRepository {
+
     override suspend fun getAllTasks(): List<TaskModel> {
         return appDatabase.taskDao.all()
     }
@@ -17,6 +18,10 @@ class TasksRepositoryImpl(
 
     override suspend fun updateTask(taskModel: TaskModel) {
         appDatabase.taskDao.update(taskModel)
+    }
+
+    override suspend fun updateTasksList(tasksModelList: List<TaskModel>) {
+        appDatabase.taskDao.update(tasksModelList)
     }
 
     override suspend fun deleteTask(taskModel: TaskModel) {

@@ -21,6 +21,9 @@ interface TaskDao {
     @Update
     fun update(taskModel: TaskModel)
 
+    @Update(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun update(taskModelList: List<TaskModel>)
+
     @Delete
     fun delete(taskModel: TaskModel)
 }
