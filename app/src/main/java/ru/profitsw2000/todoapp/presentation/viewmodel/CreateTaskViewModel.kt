@@ -10,7 +10,6 @@ import kotlinx.coroutines.launch
 import ru.profitsw2000.todoapp.data.domain.TasksRepository
 import ru.profitsw2000.todoapp.data.room.model.TaskModel
 import ru.profitsw2000.todoapp.data.state.TaskCreateState
-import ru.profitsw2000.todoapp.data.state.TasksRequestState
 
 class CreateTaskViewModel(
     private val tasksRepository: TasksRepository
@@ -18,6 +17,21 @@ class CreateTaskViewModel(
 
     private val _tasksLiveData = MutableLiveData<TaskCreateState>()
     val tasksLiveData: LiveData<TaskCreateState> by this::_tasksLiveData
+
+    private lateinit var data: List<TaskModel>
+
+    fun getTasksList() {
+        _tasksLiveData.value = TaskCreateState.Loading
+        viewModelScope.launch {
+            try {
+                data = tasksRepository.getAllTasks()
+                _tasksLiveData.value = TaskCreateState.LoadSuccess
+            } catch (exception: Exception) {
+                val message = exception.message ?: ""
+                TaskCreateState.Error(message)
+            }
+        }
+    }
 
     fun createTask(taskModel: TaskModel) {
         _tasksLiveData.value = TaskCreateState.Loading
@@ -30,7 +44,7 @@ class CreateTaskViewModel(
         val deferred: Deferred<TaskCreateState> = viewModelScope.async{
             try {
                 tasksRepository.insertTask(taskModel)
-                TaskCreateState.Success
+                TaskCreateState.CreateSuccess
             } catch (exception: Exception) {
                 val message = exception.message ?: ""
                 TaskCreateState.Error(message)

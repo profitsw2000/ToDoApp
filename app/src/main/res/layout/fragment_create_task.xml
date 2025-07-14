@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="32dp"
+    tools:context=".presentation.view.CreateTaskFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/to_do_text_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:id="@+id/content_input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:lines="10"
+            android:minLines="5"
+            android:maxLines="100"
+            android:scrollbars="vertical"
+            android:inputType="textMultiLine"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/priority_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/to_do_text_input_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Приоритет"
+        android:textSize="24sp"/>
+
+    <NumberPicker
+        android:id="@+id/priority_number_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/priority_title_text_view"
+        app:layout_constraintEnd_toStartOf="@+id/create_task_button"
+        app:layout_constraintStart_toEndOf="@id/priority_title_text_view"
+        app:layout_constraintTop_toTopOf="@id/priority_title_text_view" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create_task_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ДОБАВИТЬ"
+        app:layout_constraintBottom_toBottomOf="@+id/priority_number_picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/priority_number_picker" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
