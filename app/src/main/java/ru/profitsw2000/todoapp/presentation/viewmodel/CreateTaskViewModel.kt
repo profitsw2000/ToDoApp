@@ -25,7 +25,7 @@ class CreateTaskViewModel(
         viewModelScope.launch {
             try {
                 data = tasksRepository.getAllTasks()
-                _tasksLiveData.value = TaskCreateState.LoadSuccess
+                _tasksLiveData.value = TaskCreateState.LoadSuccess(data.size)
             } catch (exception: Exception) {
                 val message = exception.message ?: ""
                 TaskCreateState.Error(message)
@@ -40,9 +40,28 @@ class CreateTaskViewModel(
         }
     }
 
+    private fun getTasksListWithNewPriorities(newTaskPriority: Int): List<TaskModel> {
+        val tasksList: MutableList<TaskModel> = mutableListOf()
+        data.forEach {
+            val newPriority = if (it.priority >= newTaskPriority) it.priority + 1
+            else it.priority
+
+            tasksList.add(
+                TaskModel(
+                    id = it.id,
+                    priority = newPriority,
+                    taskText = it.taskText
+                )
+            )
+        }
+
+        return tasksList
+    }
+
     private suspend fun insertTask(taskModel: TaskModel): TaskCreateState {
         val deferred: Deferred<TaskCreateState> = viewModelScope.async{
             try {
+                tasksRepository.updateTasksList(getTasksListWithNewPriorities(taskModel.priority))
                 tasksRepository.insertTask(taskModel)
                 TaskCreateState.CreateSuccess
             } catch (exception: Exception) {
