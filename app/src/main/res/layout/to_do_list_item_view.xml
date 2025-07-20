@@ -11,7 +11,7 @@
     android:background="@drawable/to_do_list_item_background">
 
     <TextView
-        android:id="@+id/note_title_text_view"
+        android:id="@+id/task_content_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/control_icons_margin"
-        app:layout_constraintTop_toBottomOf="@id/note_title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/task_content_text_view"
         app:layout_constraintStart_toStartOf="parent"
         tools:src="@drawable/arrow_drop_up"/>
 
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/control_icons_margin"
         android:layout_marginStart="@dimen/control_icons_margin"
-        app:layout_constraintTop_toBottomOf="@id/note_title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/task_content_text_view"
         app:layout_constraintStart_toEndOf="@id/arrow_up_image_view"
         tools:src="@drawable/arrow_drop_down"/>
 
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/control_icons_margin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/note_title_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/task_content_text_view"
         tools:src="@drawable/bin_icon" />
 
     <ImageView
@@ -53,7 +53,7 @@
         android:layout_marginTop="@dimen/control_icons_margin"
         android:layout_marginEnd="@dimen/control_icons_margin"
         app:layout_constraintEnd_toStartOf="@+id/delete_task_image_view"
-        app:layout_constraintTop_toBottomOf="@+id/note_title_text_view"
+        app:layout_constraintTop_toBottomOf="@+id/task_content_text_view"
         tools:src="@drawable/edit_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
