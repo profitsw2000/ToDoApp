@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/notes_list_item_view_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_between_to_do_list_items"
+    android:paddingHorizontal="@dimen/to_do_list_item_horizontal_padding"
+    android:paddingVertical="@dimen/to_do_list_item_vertical_padding"
+    android:background="@drawable/to_do_list_item_background">
+
+    <TextView
+        android:id="@+id/note_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Move cursor to position, uppercase is absolute, lowercase is relative moveto commands are followed by X,Y coordinates. There can be more than one set of coordinates following an M command, these are treated as implicit lineto commands." />
+
+    <ImageView
+        android:id="@+id/arrow_up_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/control_icons_margin"
+        app:layout_constraintTop_toBottomOf="@id/note_title_text_view"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/arrow_drop_up"/>
+
+    <ImageView
+        android:id="@+id/arrow_down_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/control_icons_margin"
+        android:layout_marginStart="@dimen/control_icons_margin"
+        app:layout_constraintTop_toBottomOf="@id/note_title_text_view"
+        app:layout_constraintStart_toEndOf="@id/arrow_up_image_view"
+        tools:src="@drawable/arrow_drop_down"/>
+
+    <ImageView
+        android:id="@+id/delete_task_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/control_icons_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/note_title_text_view"
+        tools:src="@drawable/bin_icon" />
+
+    <ImageView
+        android:id="@+id/edit_task_image_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/control_icons_margin"
+        android:layout_marginEnd="@dimen/control_icons_margin"
+        app:layout_constraintEnd_toStartOf="@+id/delete_task_image_view"
+        app:layout_constraintTop_toBottomOf="@+id/note_title_text_view"
+        tools:src="@drawable/edit_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

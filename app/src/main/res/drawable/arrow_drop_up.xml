@@ -1,0 +1,22 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#129502" android:viewportHeight="24" android:viewportWidth="24" android:width="24dp">
+      
+    <path android:fillColor="@android:color/white" android:pathData="M0,18l12,-12 12,12z"/>
+    
+</vector>
+
+    <!--android:pathData="M7,14l5,-5 5,5z"-->
+<!--
+    M or m (X,Y)+
+    moveto: Move cursor to position, uppercase is absolute, lowercase is relative moveto commands are followed by X,Y coordinates. There can be more than one set of coordinates following an M command, these are treated as implicit lineto commands.
+
+    Z or z
+    closepath: Draws a line from the current position of the cursor to the start position of the path. Does not have any parameters.
+
+    L or l (X,Y)+
+    lineto: Draws a line from the current position to the position specified by X,Y. Uppercase means absolute coordinates, lowercase means relative coordinates. You can have more than one set of coordinates following a lineto command. If you want specify more than one set of coordinates, it means that you’re creating a polyline (shape consisting of multiple string lines).
+
+    H or h (X)+
+    Horizontal lineto draws a horizontal line from the current cursor position to the position specified by X. If there are multiple X coordinates following the command, this is treated as a polyline. The Y coordinate remains unchanged. Uppercase H is absolute coordinates, lowercase h is relative coordinates.
+
+    V or v (Y)+
+    Vertical lineto draws a vertical line from the current cursor position to the position specified by Y. If there are multiple Y coordinates following the command, this is treated as a polyline. The X coordinate remains unchanged. Uppercase V is absolute coordinates, lowercase v is relative coordinates.-->
