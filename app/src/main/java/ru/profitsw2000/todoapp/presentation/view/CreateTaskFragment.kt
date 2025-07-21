@@ -47,6 +47,9 @@ class CreateTaskFragment : Fragment() {
             if (!taskTextIsEmpty()) createTaskViewModel.createTask(getTaskModel())
             else toDoTextInputLayout.error = getString(R.string.enter_text_error_hint)
         }
+        priorityTitleTextView.setOnClickListener {
+            Log.d(TAG, "initViews: ${priorityNumberPicker.value}")
+        }
     }
 
     private fun observeData() {

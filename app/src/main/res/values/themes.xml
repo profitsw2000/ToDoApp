@@ -5,6 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimaryContainer">@color/light_green</item>
         <item name="colorOnPrimaryContainer">@color/dark_green</item>
+        <item name="colorOutline">@color/dark_green</item>
     </style>
 
     <style name="Theme.ToDoApp" parent="Base.Theme.ToDoApp" />

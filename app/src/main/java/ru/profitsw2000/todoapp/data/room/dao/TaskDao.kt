@@ -12,7 +12,7 @@ import ru.profitsw2000.todoapp.data.room.model.TaskModel
 
 @Dao
 interface TaskDao {
-    @Query("SELECT * FROM TaskModel")
+    @Query("SELECT * FROM TaskModel ORDER BY TaskModel.priority ASC")
     suspend fun all(): List<TaskModel>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
