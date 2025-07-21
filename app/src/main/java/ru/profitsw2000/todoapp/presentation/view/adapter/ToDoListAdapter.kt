@@ -24,7 +24,7 @@ class ToDoListAdapter(
             false)
         val taskViewHolder = ViewHolder(binding)
 
-        setClickListeners(taskViewHolder, taskViewHolder.bindingAdapterPosition)
+        setClickListeners(taskViewHolder)
 
         return taskViewHolder
     }
@@ -37,22 +37,22 @@ class ToDoListAdapter(
         holder.taskText.text = data[position].taskText
     }
 
-    private fun setClickListeners(taskViewHolder: ViewHolder, position: Int) {
+    private fun setClickListeners(taskViewHolder: ViewHolder) {
         with(taskViewHolder) {
             increasePriorityButton.setOnClickListener {
-                onTaskControlButtonClickListener.onIncreasePriorityClick(position = position)
+                onTaskControlButtonClickListener.onIncreasePriorityClick(position = taskViewHolder.adapterPosition)
             }
 
             decreasePriorityButton.setOnClickListener {
-                onTaskControlButtonClickListener.onDecreasePriorityClick(position = position)
+                onTaskControlButtonClickListener.onDecreasePriorityClick(position = taskViewHolder.adapterPosition)
             }
 
             deleteTaskButton.setOnClickListener {
-                onTaskControlButtonClickListener.onDeleteTaskClick(position = position)
+                onTaskControlButtonClickListener.onDeleteTaskClick(position = taskViewHolder.adapterPosition)
             }
 
             editTaskButton.setOnClickListener {
-                onTaskControlButtonClickListener.onEditTaskClick(position = position)
+                onTaskControlButtonClickListener.onEditTaskClick(position = taskViewHolder.adapterPosition)
             }
         }
     }

@@ -28,15 +28,15 @@ class MainFragment : Fragment() {
     private val mainViewModel: MainViewModel by viewModel()
     private val adapter = ToDoListAdapter(object : OnTaskControlButtonClickListener{
         override fun onIncreasePriorityClick(position: Int) {
-            Log.d(TAG, "onIncreasePriorityClick: $position")
+            mainViewModel.changeTask(position, isIncreasePriority = true)
         }
 
         override fun onDecreasePriorityClick(position: Int) {
-            Log.d(TAG, "onDecreasePriorityClick: $position")
+            mainViewModel.changeTask(position, isIncreasePriority = false)
         }
 
         override fun onDeleteTaskClick(position: Int) {
-            Log.d(TAG, "onDeleteTaskClick: $position")
+            mainViewModel.deleteTask(position)
         }
 
         override fun onEditTaskClick(position: Int) {
@@ -71,7 +71,6 @@ class MainFragment : Fragment() {
     private fun initViews() = with(binding) {
         tasksListRecyclerView.adapter = adapter
         addTaskFab.setOnClickListener {
-            Log.d(TAG, "initViews: fab clicked!")
             controller.openCreateTaskFragment()
         }
     }
@@ -110,7 +109,6 @@ class MainFragment : Fragment() {
     }
 
     private fun populateRecyclerView(taskModelList: List<TaskModel>) {
-        Log.d(TAG, "populateRecyclerView: $taskModelList")
         setProgressBarVisible(false)
         adapter.setData(taskModelList)
     }
