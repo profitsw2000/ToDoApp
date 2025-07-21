@@ -1,5 +1,6 @@
 package ru.profitsw2000.todoapp.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,7 @@ import ru.profitsw2000.todoapp.data.domain.TasksRepository
 import ru.profitsw2000.todoapp.data.room.model.TaskModel
 import ru.profitsw2000.todoapp.data.state.TaskCreateState
 import ru.profitsw2000.todoapp.data.state.TasksRequestState
+import ru.profitsw2000.todoapp.utility.TAG
 
 class MainViewModel(
     private val tasksRepository: TasksRepository
@@ -25,6 +27,7 @@ class MainViewModel(
             try {
                 val tasksList = tasksRepository.getAllTasks()
                 _tasksLiveData.value = TasksRequestState.Success(tasksList)
+                Log.d(TAG, "getTasksList: $tasksList")
             } catch (exception: Exception) {
                 _tasksLiveData.value = exception.message?.let { TasksRequestState.Error(it) }
             }

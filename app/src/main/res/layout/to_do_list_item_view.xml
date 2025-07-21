@@ -25,7 +25,7 @@
         android:layout_marginTop="@dimen/control_icons_margin"
         app:layout_constraintTop_toBottomOf="@id/task_content_text_view"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/arrow_drop_up"/>
+        android:src="@drawable/arrow_drop_up"/>
 
     <ImageView
         android:id="@+id/arrow_down_image_view"
@@ -35,7 +35,7 @@
         android:layout_marginStart="@dimen/control_icons_margin"
         app:layout_constraintTop_toBottomOf="@id/task_content_text_view"
         app:layout_constraintStart_toEndOf="@id/arrow_up_image_view"
-        tools:src="@drawable/arrow_drop_down"/>
+        android:src="@drawable/arrow_drop_down"/>
 
     <ImageView
         android:id="@+id/delete_task_image_view"
@@ -44,7 +44,7 @@
         android:layout_marginTop="@dimen/control_icons_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/task_content_text_view"
-        tools:src="@drawable/bin_icon" />
+        android:src="@drawable/bin_icon" />
 
     <ImageView
         android:id="@+id/edit_task_image_view"
@@ -54,6 +54,6 @@
         android:layout_marginEnd="@dimen/control_icons_margin"
         app:layout_constraintEnd_toStartOf="@+id/delete_task_image_view"
         app:layout_constraintTop_toBottomOf="@+id/task_content_text_view"
-        tools:src="@drawable/edit_icon" />
+        android:src="@drawable/edit_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

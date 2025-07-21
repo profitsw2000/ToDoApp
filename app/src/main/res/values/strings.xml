@@ -8,4 +8,5 @@
     <string name="error_dialog_title_text">Ошибка</string>
     <string name="error_dialog_message_text">Ошибка в работе базы данных.</string>
     <string name="ok_button_text">OK</string>
+    <string name="not_controller_activity_exception_message">Activity должна наследоваться от Controller</string>
 </resources>

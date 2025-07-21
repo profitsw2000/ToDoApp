@@ -29,7 +29,7 @@ class EditTaskViewModel(
         val deferred: Deferred<TaskCreateState> = viewModelScope.async{
             try {
                 tasksRepository.updateTask(taskModel)
-                TaskCreateState.Success
+                TaskCreateState.CreateSuccess
             } catch (exception: Exception) {
                 val message = exception.message ?: ""
                 TaskCreateState.Error(message)

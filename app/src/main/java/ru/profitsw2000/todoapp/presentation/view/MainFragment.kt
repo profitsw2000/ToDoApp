@@ -1,6 +1,8 @@
 package ru.profitsw2000.todoapp.presentation.view
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +14,43 @@ import ru.profitsw2000.todoapp.R
 import ru.profitsw2000.todoapp.data.room.model.TaskModel
 import ru.profitsw2000.todoapp.data.state.TasksRequestState
 import ru.profitsw2000.todoapp.databinding.FragmentMainBinding
+import ru.profitsw2000.todoapp.presentation.view.adapter.OnTaskControlButtonClickListener
+import ru.profitsw2000.todoapp.presentation.view.adapter.ToDoListAdapter
 import ru.profitsw2000.todoapp.presentation.viewmodel.MainViewModel
+import ru.profitsw2000.todoapp.utility.Controller
+import ru.profitsw2000.todoapp.utility.TAG
 
 class MainFragment : Fragment() {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
+    private val controller by lazy { activity as Controller }
     private val mainViewModel: MainViewModel by viewModel()
+    private val adapter = ToDoListAdapter(object : OnTaskControlButtonClickListener{
+        override fun onIncreasePriorityClick(position: Int) {
+            Log.d(TAG, "onIncreasePriorityClick: $position")
+        }
+
+        override fun onDecreasePriorityClick(position: Int) {
+            Log.d(TAG, "onDecreasePriorityClick: $position")
+        }
+
+        override fun onDeleteTaskClick(position: Int) {
+            Log.d(TAG, "onDeleteTaskClick: $position")
+        }
+
+        override fun onEditTaskClick(position: Int) {
+            Log.d(TAG, "onEditTaskClick: $position")
+        }
+
+    })
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (activity !is Controller) {
+            throw IllegalStateException(getString(R.string.not_controller_activity_exception_message))
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +69,11 @@ class MainFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-
+        tasksListRecyclerView.adapter = adapter
+        addTaskFab.setOnClickListener {
+            Log.d(TAG, "initViews: fab clicked!")
+            controller.openCreateTaskFragment()
+        }
     }
 
     private fun observeData() {
@@ -54,6 +90,7 @@ class MainFragment : Fragment() {
     }
 
     private fun showMessage(title: String, message: String) {
+        setProgressBarVisible(false)
         MaterialAlertDialogBuilder(requireActivity())
             .setTitle(title)
             .setMessage(message)
@@ -73,7 +110,9 @@ class MainFragment : Fragment() {
     }
 
     private fun populateRecyclerView(taskModelList: List<TaskModel>) {
-
+        Log.d(TAG, "populateRecyclerView: $taskModelList")
+        setProgressBarVisible(false)
+        adapter.setData(taskModelList)
     }
 
     companion object {
