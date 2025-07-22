@@ -90,9 +90,4 @@ class CreateTaskViewModel(
         }
         return deferred.await()
     }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.d(TAG, "onCleared: ")
-    }
 }
