@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/form_fragments_edge_padding"
     tools:context=".presentation.view.EditTaskFragment">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -33,16 +34,16 @@
         android:id="@+id/priority_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="@dimen/margin_between_views_and_input_form"
         app:layout_constraintTop_toBottomOf="@id/to_do_text_input_layout"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Приоритет"
-        android:textSize="24sp"/>
+        android:text="@string/priority_title_text"
+        android:textSize="@dimen/priority_title_text_size"/>
 
     <NumberPicker
         android:id="@+id/priority_number_picker"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
+        android:layout_height="@dimen/priority_number_picker_height"
         android:solidColor="@color/dark_green"
         app:layout_constraintBottom_toBottomOf="@id/priority_title_text_view"
         app:layout_constraintEnd_toStartOf="@+id/create_task_button"
@@ -54,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/dark_green"
-        android:text="ДОБАВИТЬ"
+        android:text="@string/add_task_button_text"
         app:layout_constraintBottom_toBottomOf="@+id/priority_number_picker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/priority_number_picker" />
