@@ -5,8 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import ru.profitsw2000.todoapp.R
+import ru.profitsw2000.todoapp.data.room.model.TaskModel
+import ru.profitsw2000.todoapp.data.state.TaskEditState
 import ru.profitsw2000.todoapp.databinding.FragmentEditTaskBinding
+import ru.profitsw2000.todoapp.presentation.viewmodel.EditTaskViewModel
 
 private const val ARG_POSITION = "position"
 
@@ -15,6 +21,7 @@ class EditTaskFragment : Fragment() {
     private var taskPosition: Int? = null
     private var _binding: FragmentEditTaskBinding? = null
     private val binding get() = _binding!!
+    private val editTaskViewModel: EditTaskViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +39,80 @@ class EditTaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeData()
+        initViews()
+        getTaskFromDB(taskPosition)
+    }
+
+    private fun getTaskFromDB(taskPosition: Int?) {
+        if (taskPosition != null) editTaskViewModel.getTask(taskPosition)
+        else showMessage(getString(R.string.error_dialog_title_text),
+            getString(
+                R.string.unknown_error_dialog_message_text
+            ))
+    }
+
+    private fun observeData() {
+        val observer = Observer<TaskEditState> { renderData(it) }
+        editTaskViewModel.tasksLiveData.observe(viewLifecycleOwner, observer)
+    }
+
+    private fun initViews() = with(binding) {
+        createTaskButton.setOnClickListener {
+            editTaskViewModel.editTask(getTaskModel())
+        }
+    }
+
+    private fun renderData(taskEditState: TaskEditState) {
+        when(taskEditState) {
+            TaskEditState.EditSuccess -> showMessage(getString(R.string.success_dialog_title_text), getString(R.string.success_edit_dialog_message_text))
+            is TaskEditState.Error -> showMessage(getString(R.string.error_dialog_title_text),
+                getString(
+                    R.string.error_dialog_message_text
+                ))
+            is TaskEditState.LoadSuccess -> showForms(taskEditState.taskModel, taskEditState.tasksListSize)
+            TaskEditState.Loading -> setProgressBarVisible(true)
+        }
+    }
+
+    private fun showForms(taskModel: TaskModel, taskListSize: Int) = with(binding) {
+        setProgressBarVisible(false)
+        toDoTextInputLayout.editText?.setText(taskModel.taskText)
+        priorityNumberPicker.minValue = 1
+        priorityNumberPicker.maxValue = taskListSize
+        priorityNumberPicker.value = taskModel.priority
+    }
+
+    private fun setProgressBarVisible(isVisible: Boolean) = with(binding) {
+        if (isVisible) progressBar.visibility = View.VISIBLE
+        else progressBar.visibility = View.GONE
+
+        toDoTextInputLayout.isEnabled = !isVisible
+        priorityNumberPicker.isEnabled = !isVisible
+        createTaskButton.isEnabled = !isVisible
+    }
+
+    private fun showMessage(title: String, message: String) {
+        setProgressBarVisible(false)
+        MaterialAlertDialogBuilder(requireActivity())
+            .setTitle(title)
+            .setMessage(message)
+            .setPositiveButton(getString(R.string.ok_button_text)) { dialog, _ ->
+                requireActivity().onBackPressed()
+                dialog.dismiss()
+            }
+            .create()
+            .show()
+    }
+
+    private fun getTaskModel(): TaskModel {
+        return with(binding) {
+            TaskModel(
+                id = 0,
+                priority = priorityNumberPicker.value,
+                taskText = toDoTextInputLayout.editText?.text.toString()
+            )
+        }
     }
 
     companion object {

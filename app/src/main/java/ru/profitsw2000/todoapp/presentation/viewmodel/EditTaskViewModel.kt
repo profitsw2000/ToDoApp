@@ -1,6 +1,5 @@
 package ru.profitsw2000.todoapp.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -14,8 +13,6 @@ import ru.profitsw2000.todoapp.data.domain.TasksRepository
 import ru.profitsw2000.todoapp.data.room.model.TaskModel
 import ru.profitsw2000.todoapp.data.state.TaskCreateState
 import ru.profitsw2000.todoapp.data.state.TaskEditState
-import ru.profitsw2000.todoapp.data.state.TasksRequestState
-import ru.profitsw2000.todoapp.utility.TAG
 
 class EditTaskViewModel(
     private val tasksRepository: TasksRepository
@@ -57,8 +54,7 @@ class EditTaskViewModel(
     }
 
     fun editTask(taskModel: TaskModel) {
-        if (taskModel.priority == this.taskModel.priority) TaskEditState.EditSuccess
-        else updateTasksList(getTasksListWithNewPriorities(taskModel))
+        updateTasksList(getTasksListWithNewPriorities(taskModel))
     }
 
     private fun getTasksListWithNewPriorities(newTaskModel: TaskModel): List<TaskModel> {
@@ -88,7 +84,12 @@ class EditTaskViewModel(
                     )
                 }
                 it.priority == oldPriority -> {
-                    newTasksList.add(newTaskModel)
+                    newTasksList.add(TaskModel(
+                        id = it.id,
+                        priority = newPriority,
+                        taskText = newTaskModel.taskText
+                        )
+                    )
                 }
             }
         }
@@ -100,7 +101,7 @@ class EditTaskViewModel(
         _tasksLiveData.value = TaskEditState.Loading
         lifecycleScope.launch {
             val isUpdated = update(tasksList)
-            if (isUpdated) TaskEditState.EditSuccess
+            if (isUpdated) _tasksLiveData.value = TaskEditState.EditSuccess
         }
     }
 

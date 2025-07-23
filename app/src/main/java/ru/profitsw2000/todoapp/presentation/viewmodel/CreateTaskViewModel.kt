@@ -84,7 +84,6 @@ class CreateTaskViewModel(
                 TaskCreateState.CreateSuccess
             } catch (exception: Exception) {
                 val message = exception.message ?: ""
-                Log.d("VVV", "insertTask: $message")
                 TaskCreateState.Error(message)
             }
         }

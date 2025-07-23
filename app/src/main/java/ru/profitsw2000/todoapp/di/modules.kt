@@ -6,6 +6,7 @@ import ru.profitsw2000.todoapp.data.data.TasksRepositoryImpl
 import ru.profitsw2000.todoapp.data.domain.TasksRepository
 import ru.profitsw2000.todoapp.data.room.database.AppDatabase
 import ru.profitsw2000.todoapp.presentation.viewmodel.CreateTaskViewModel
+import ru.profitsw2000.todoapp.presentation.viewmodel.EditTaskViewModel
 import ru.profitsw2000.todoapp.presentation.viewmodel.MainViewModel
 
 val mainModule = module {
@@ -16,4 +17,5 @@ val mainModule = module {
     single<TasksRepository> { TasksRepositoryImpl(get()) }
     single { MainViewModel(get()) }
     single { CreateTaskViewModel(get()) }
+    single { EditTaskViewModel(get()) }
 }

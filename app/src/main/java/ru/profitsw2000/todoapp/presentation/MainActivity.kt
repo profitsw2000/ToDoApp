@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.replace
 import ru.profitsw2000.todoapp.R
 import ru.profitsw2000.todoapp.presentation.view.CreateTaskFragment
+import ru.profitsw2000.todoapp.presentation.view.EditTaskFragment
 import ru.profitsw2000.todoapp.presentation.view.MainFragment
 import ru.profitsw2000.todoapp.utility.Controller
 import ru.profitsw2000.todoapp.utility.TAG
@@ -47,7 +48,12 @@ class MainActivity : AppCompatActivity(), Controller {
         }
     }
 
-    override fun openEditTaskFragment() {
-        Log.d(TAG, "openEditTaskFragment: ")
+    override fun openEditTaskFragment(position: Int) {
+        fragmentManager.apply {
+            beginTransaction()
+                .replace(R.id.fragment_container, EditTaskFragment.newInstance(position))
+                .addToBackStack("")
+                .commit()
+        }
     }
 }

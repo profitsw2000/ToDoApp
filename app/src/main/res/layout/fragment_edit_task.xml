@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/dark_green"
-        android:text="@string/add_task_button_text"
+        android:text="@string/edit_task_button_text"
         app:layout_constraintBottom_toBottomOf="@+id/priority_number_picker"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/priority_number_picker" />

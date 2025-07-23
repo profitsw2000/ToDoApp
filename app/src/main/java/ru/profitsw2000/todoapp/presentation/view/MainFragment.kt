@@ -40,7 +40,7 @@ class MainFragment : Fragment() {
         }
 
         override fun onEditTaskClick(position: Int) {
-            Log.d(TAG, "onEditTaskClick: $position")
+            controller.openEditTaskFragment(position)
         }
 
     })

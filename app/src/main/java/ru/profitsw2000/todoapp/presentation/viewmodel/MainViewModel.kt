@@ -33,7 +33,6 @@ class MainViewModel(
             try {
                 tasksList = getToDoList()
                 _tasksLiveData.value = TasksRequestState.Success(tasksList)
-                Log.d(TAG, "getTasksList: $tasksList")
             } catch (exception: Exception) {
                 _tasksLiveData.value = exception.message?.let { TasksRequestState.Error(it) }
             }

@@ -6,6 +6,6 @@ interface Controller {
 
     fun openCreateTaskFragment()
 
-    fun openEditTaskFragment()
+    fun openEditTaskFragment(position: Int)
 
 }
