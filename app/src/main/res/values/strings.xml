@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDoApp</string>
+    <string name="app_name">Список дел</string>
     <string name="enter_text_error_hint">Введите текст</string>
     <string name="success_dialog_title_text">Успешно</string>
     <string name="success_dialog_message_text">Задание добавлено в список</string>
