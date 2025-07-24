@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top|start"
+            android:textSize="@dimen/task_text_size"
             android:lines="10"
             android:minLines="5"
             android:maxLines="100"

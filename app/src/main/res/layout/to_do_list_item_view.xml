@@ -14,6 +14,7 @@
         android:id="@+id/task_content_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/task_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Move cursor to position, uppercase is absolute, lowercase is relative moveto commands are followed by X,Y coordinates. There can be more than one set of coordinates following an M command, these are treated as implicit lineto commands." />
