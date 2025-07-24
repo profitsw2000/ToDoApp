@@ -2,11 +2,11 @@ package ru.profitsw2000.todoapp.presentation.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -14,13 +14,14 @@ import ru.profitsw2000.todoapp.R
 import ru.profitsw2000.todoapp.data.room.model.TaskModel
 import ru.profitsw2000.todoapp.data.state.TasksRequestState
 import ru.profitsw2000.todoapp.databinding.FragmentMainBinding
+import ru.profitsw2000.todoapp.presentation.MainActivity
 import ru.profitsw2000.todoapp.presentation.view.adapter.OnTaskControlButtonClickListener
 import ru.profitsw2000.todoapp.presentation.view.adapter.ToDoListAdapter
 import ru.profitsw2000.todoapp.presentation.viewmodel.MainViewModel
 import ru.profitsw2000.todoapp.utility.Controller
-import ru.profitsw2000.todoapp.utility.TAG
 
-class MainFragment : Fragment() {
+
+class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -52,6 +53,19 @@ class MainFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity).supportFragmentManager.addOnBackStackChangedListener(this)
+    }
+
+    override fun onBackStackChanged() {
+        if (activity != null) {
+            if (requireActivity().supportFragmentManager.backStackEntryCount < 1) {
+                (activity as MainActivity?)?.hideUpButton()
+            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,6 +77,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        controller.setAppBarText(getString(R.string.main_fragment_app_bar_title))
         initViews()
         observeData()
         mainViewModel.getTasksList()

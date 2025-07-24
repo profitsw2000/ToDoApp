@@ -8,4 +8,6 @@ interface Controller {
 
     fun openEditTaskFragment(position: Int)
 
+    fun setAppBarText(appBarText: String)
+
 }

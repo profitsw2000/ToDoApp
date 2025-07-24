@@ -14,4 +14,12 @@
     <string name="priority_title_text">Приоритет</string>
     <string name="add_task_button_text">ДОБАВИТЬ</string>
     <string name="edit_task_button_text">РЕДАКТИРОВАТЬ</string>
+    <string name="main_fragment_app_bar_title">Список дел</string>
+    <string name="create_task_fragment_app_bar_title">Создание задания</string>
+    <string name="edit_task_fragment_app_bar_title">Редактирование задания</string>
+    <string name="yes_button_text">Да</string>
+    <string name="no_button_text">Нет</string>
+    <string name="confirm_exit_dialog_title">Подтверждение выхода</string>
+    <string name="confirm_edit_task_dialog_message">Вы действительно хотите выйти с экрана редактирования задания?</string>
+    <string name="confirm_create_task_dialog_message">Вы действительно хотите выйти с экрана создания задания?</string>
 </resources>
