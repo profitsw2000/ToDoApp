@@ -6,6 +6,11 @@
         <item name="colorPrimaryContainer">@color/light_green</item>
         <item name="colorOnSurface">@color/black_green</item>
         <item name="colorOutline">@color/dark_green</item>
+
+        <item name="android:navigationBarColor">@color/light_green</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">@color/light_green</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.ToDoApp" parent="Base.Theme.ToDoApp" />
