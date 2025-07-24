@@ -32,7 +32,6 @@ class CreateTaskViewModel(
             try {
                 data = getToDoList()
                 _tasksLiveData.value = TaskCreateState.LoadSuccess(data.size)
-                Log.d(TAG, "getTasksList: $data")
             } catch (exception: Exception) {
                 val message = exception.message ?: ""
                 TaskCreateState.Error(message)

@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ToDoApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="enter_text_error_hint">Введите текст</string>
     <string name="success_dialog_title_text">Успешно</string>
     <string name="success_dialog_message_text">Задание добавлено в список</string>
@@ -20,6 +18,8 @@
     <string name="yes_button_text">Да</string>
     <string name="no_button_text">Нет</string>
     <string name="confirm_exit_dialog_title">Подтверждение выхода</string>
+    <string name="confirm_delete_task_dialog_title">Удаление задания</string>
     <string name="confirm_edit_task_dialog_message">Вы действительно хотите выйти с экрана редактирования задания?</string>
     <string name="confirm_create_task_dialog_message">Вы действительно хотите выйти с экрана создания задания?</string>
+    <string name="confirm_delete_task_dialog_message">Вы уверены, что хотите удалить данное задание?</string>
 </resources>

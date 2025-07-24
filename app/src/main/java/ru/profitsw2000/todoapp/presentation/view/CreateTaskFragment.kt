@@ -64,9 +64,6 @@ class CreateTaskFragment : Fragment() {
             if (!taskTextIsEmpty()) createTaskViewModel.createTask(getTaskModel())
             else toDoTextInputLayout.error = getString(R.string.enter_text_error_hint)
         }
-        priorityTitleTextView.setOnClickListener {
-            Log.d(TAG, "initViews: ${priorityNumberPicker.value}")
-        }
     }
 
     private fun observeData() {
@@ -135,16 +132,7 @@ class CreateTaskFragment : Fragment() {
         priorityNumberPicker.isEnabled = !isVisible
     }
 
-    private fun showProgressBar() = with(binding) {
-        Log.d(TAG, "showProgressBar: ")
-        progressBar.visibility = View.VISIBLE
-        toDoTextInputLayout.isEnabled = false
-        createTaskButton.isEnabled = false
-        priorityNumberPicker.isEnabled = false
-    }
-
     private fun showForm(tasksListSize: Int) = with(binding) {
-        Log.d(TAG, "showForm: ")
         setProgressBarVisibility(false)
         priorityNumberPicker.minValue = 1
         priorityNumberPicker.maxValue = tasksListSize + 1

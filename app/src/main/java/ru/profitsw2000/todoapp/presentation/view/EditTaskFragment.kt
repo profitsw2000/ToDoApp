@@ -161,6 +161,11 @@ class EditTaskFragment : Fragment() {
         (activity as MainActivity).supportFragmentManager.popBackStack()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         @JvmStatic
         fun newInstance(position: Int) =

@@ -37,7 +37,7 @@ class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
         }
 
         override fun onDeleteTaskClick(position: Int) {
-            mainViewModel.deleteTask(position)
+            showDeleteTaskWarningMessage(position)
         }
 
         override fun onEditTaskClick(position: Int) {
@@ -115,6 +115,19 @@ class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
             .show()
     }
 
+    private fun showDeleteTaskWarningMessage(position: Int) {
+        MaterialAlertDialogBuilder(requireActivity())
+            .setTitle(getString(R.string.confirm_delete_task_dialog_title))
+            .setMessage(getString(R.string.confirm_delete_task_dialog_message))
+            .setPositiveButton(getString(R.string.yes_button_text)) { dialog, _ ->
+                mainViewModel.deleteTask(position)
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.no_button_text)) { dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
     private fun setProgressBarVisible(visible: Boolean) = with(binding) {
         if (visible) {
             progressBar.visibility = View.VISIBLE
@@ -126,6 +139,11 @@ class MainFragment : Fragment(), FragmentManager.OnBackStackChangedListener {
     private fun populateRecyclerView(taskModelList: List<TaskModel>) {
         setProgressBarVisible(false)
         adapter.setData(taskModelList)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {
